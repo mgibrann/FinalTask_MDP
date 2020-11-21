@@ -6,12 +6,12 @@ import {colors, fonts} from '../../utils';
 const Splash = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace('SignIn');
+      navigation.replace('SignUp');
     }, 3000);
   }, []);
   return (
     <View style={styles.container}>
-      <Image source={IconLogo} style={{width: 100, height: 100}} />
+      <Image source={IconLogo} style={{width: 80, height: 80}} />
       <Text style={styles.logo}>Kabar Burung</Text>
     </View>
   );
@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.white,
+    backgroundColor: colors.background,
   },
   logo: {
     fontSize: 16,
     textAlign: 'center',
-    fontFamily: fonts.primary[600],
+    fontFamily: fonts.primary[700],
     color: colors.blue,
     marginTop: 5,
   },
