@@ -7,6 +7,7 @@ const mainColors = {
   blue1: '#3224E3',
   dark1: '#112340',
   red1: '#E06379',
+  black: 'rgba(0, 0, 0, 0.2)',
   green1: '#3ACBD8',
 };
 
@@ -16,8 +17,9 @@ export const colors = {
   dark: mainColors.dark1,
   red: mainColors.red1,
   green: mainColors.green1,
-  background: mainColors.white1,
-  border: mainColors.grey2,
+  background: mainColors.white2,
+  border: mainColors.black,
+  bottomnavigation: mainColors.white2,
   text: {
     primary: mainColors.dark1,
     secondary: mainColors.grey1,

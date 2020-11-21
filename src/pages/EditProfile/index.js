@@ -18,8 +18,8 @@ const EditProfile = () => {
   const [password, SetPassword] = useState('');
   return (
     <>
-      <Header title="Edit Profile" />
       <ScrollView showsVerticalScrollIndicator={false}>
+        <Header title="Edit Profile" />
         <View style={styles.page}>
           <View style={styles.container}>
             <TouchableOpacity style={styles.profile}>

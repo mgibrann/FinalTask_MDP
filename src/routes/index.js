@@ -1,17 +1,26 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-// import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Splash, SignIn, SignUp, EditProfile, Home} from '../pages';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Splash, SignIn, SignUp, EditProfile, Home, AddPost} from '../pages';
+import {BottomNavigator} from '../component';
 
 const Stack = createStackNavigator();
-// const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 
-// const MainApp = () => {};
+const MainApp = () => {
+  return (
+    <Tab.Navigator tabBar={(props) => <BottomNavigator {...props} />}>
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="AddPost" component={AddPost} />
+      <Tab.Screen name="EditProfile" component={EditProfile} />
+    </Tab.Navigator>
+  );
+};
 
 const Router = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName="MainApp">
       <Stack.Screen
         name="Splash"
         component={Splash}
@@ -32,11 +41,11 @@ const Router = () => {
         component={EditProfile}
         options={{headerShown: false}}
       />
-      {/* <Stack.Screen
-        name="Home"
-        component={Home}
+      <Stack.Screen
+        name="MainApp"
+        component={MainApp}
         options={{headerShown: false}}
-      /> */}
+      />
     </Stack.Navigator>
   );
 };

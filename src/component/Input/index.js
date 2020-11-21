@@ -32,7 +32,7 @@ export default Input;
 const styles = StyleSheet.create({
   desc: {
     fontSize: 15,
-    color: colors.text.secondary,
+    color: colors.dark,
     fontFamily: fonts.primary[600],
     marginBottom: 6,
   },
