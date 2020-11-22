@@ -38,7 +38,7 @@ const SignIn = ({navigation}) => {
           text="Forget My Password"
           align="left"
           size={12}
-          onPress={() => navigation.replace('SignUp')}
+          onPress={() => navigation.navigate('SignUp')}
         />
       </View>
       <Gap height={40} />
@@ -48,7 +48,7 @@ const SignIn = ({navigation}) => {
           text="Create New Account"
           align="center"
           size={12}
-          onPress={() => navigation.replace('SignUp')}
+          onPress={() => navigation.navigate('SignUp')}
         />
       </View>
     </View>

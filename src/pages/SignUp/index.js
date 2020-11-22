@@ -3,13 +3,13 @@ import {StyleSheet, View, ScrollView} from 'react-native';
 import {Input, Header, Gap, Button} from '../../component';
 import {colors} from '../../utils';
 
-const SignUp = () => {
+const SignUp = ({navigation}) => {
   const [fullName, SetFullName] = useState('');
   const [email, SetEmail] = useState('');
   const [password, SetPassword] = useState('');
   return (
     <>
-      <Header title="Sign Up" />
+      <Header title="Sign Up" onPress={() => navigation.goBack()} />
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Input

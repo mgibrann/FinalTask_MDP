@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {colors} from '../../utils';
 import {TabItem} from '..';
 
@@ -18,7 +18,6 @@ const BottomNavigator = ({state, descriptors, navigation}) => {
         const isFocused = state.index === index;
 
         const onPress = () => {
-          console.log('isi label', label);
           const event = navigation.emit({
             type: 'tabPress',
             target: route.key,

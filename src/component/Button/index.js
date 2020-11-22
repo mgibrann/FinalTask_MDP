@@ -5,7 +5,7 @@ import IconOnly from './IconOnly';
 
 const Button = ({text, icon, onPress}) => {
   if (icon) {
-    return <IconOnly on />;
+    return <IconOnly onPress={onPress} />;
   }
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
