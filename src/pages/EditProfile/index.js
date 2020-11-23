@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useEffect} from 'react';
 import {
   StyleSheet,
   Image,
@@ -7,15 +8,46 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+import {showMessage} from 'react-native-flash-message';
 import {IconAddPhoto, NullPhoto} from '../../assets';
 import {Button, Gap, Header, Input} from '../../component';
-import {colors} from '../../utils';
+import Firebase from '../../config';
+import {colors, fonts, getData} from '../../utils';
 
-const EditProfile = () => {
-  const [fullName, SetFullName] = useState('');
+const EditProfile = ({navigation}) => {
+  const [fullName, SetFullName] = useState();
   const [profession, SetProfession] = useState('');
   const [email, SetEmail] = useState('');
   const [password, SetPassword] = useState('');
+
+  useEffect(() => {
+    getData('user').then((res) => {
+      SetFullName(res.fullName);
+      SetEmail(res.email);
+      SetProfession(res.profession);
+    });
+  }, []);
+
+  const onLogOut = () => {
+    Firebase.auth()
+      .signOut()
+      .then((res) => {
+        showMessage({
+          message: 'Succes Sign Out',
+          type: 'success',
+        });
+        console.log(res);
+        navigation.replace('SignIn');
+      })
+      .catch((er) => {
+        const errormessage = err.message;
+        showMessage({
+          message: errormessage,
+          type: 'danger',
+        });
+      });
+  };
+
   return (
     <>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -27,33 +59,20 @@ const EditProfile = () => {
               <Image source={IconAddPhoto} style={styles.addphoto} />
             </TouchableOpacity>
           </View>
-          <Input
-            text="Full Name"
-            value={fullName}
-            onChangeText={(value) => SetFullName(value)}
-          />
-          <Gap height={20} />
-          <Input
-            text="Profession"
-            value={profession}
-            onChangeText={(value) => SetProfession(value)}
-          />
-          <Gap height={20} />
-          <Input
-            text="Email"
-            value={email}
-            onChangeText={(value) => SetEmail(value)}
-          />
-          <Gap height={20} />
-          <Input
-            text="Password"
-            value={password}
-            onChangeText={(value) => SetPassword(value)}
-            disable
-            secureTextEntry
-          />
+          <View style={styles.wrap}>
+            <Text style={styles.title}>Full Name</Text>
+            <Text style={styles.desc}>{fullName}</Text>
+          </View>
+          <View style={styles.wrap}>
+            <Text style={styles.title}>Profession</Text>
+            <Text style={styles.desc}>{profession}</Text>
+          </View>
+          <View style={styles.wrap}>
+            <Text style={styles.title}>Email</Text>
+            <Text style={styles.desc}>{email}</Text>
+          </View>
           <Gap height={40} />
-          <Button text="Update" />
+          <Button text="Sign Out" onPress={onLogOut} />
         </View>
       </ScrollView>
     </>
@@ -81,4 +100,14 @@ const styles = StyleSheet.create({
   },
   avatar: {width: 110, height: 110},
   addphoto: {height: 30, width: 30, position: 'absolute', right: 8, bottom: 8},
+  title: {fontFamily: fonts.primary[700], fontSize: 16, color: colors.dark},
+  desc: {
+    fontFamily: fonts.primary[600],
+    fontSize: 14,
+    color: colors.blue,
+    marginBottom: 5,
+    marginTop: 5,
+    textTransform: 'uppercase',
+  },
+  wrap: {borderBottomWidth: 1, borderColor: colors.border, marginBottom: 10},
 });

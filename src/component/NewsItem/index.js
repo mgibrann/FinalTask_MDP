@@ -3,16 +3,14 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {PS5} from '../../assets';
 import {colors, fonts} from '../../utils';
 
-const NewsItem = () => {
+const NewsItem = ({title, date, image}) => {
   return (
     <TouchableOpacity style={styles.wrapper}>
       <View style={styles.container}>
-        <Text style={styles.desc}>
-          PS5 Release on 31 November 2020, In Indonesia
-        </Text>
-        <Text style={styles.date}>Today</Text>
+        <Text style={styles.desc}>{title}</Text>
+        <Text style={styles.date}>{date}</Text>
       </View>
-      <Image source={PS5} style={styles.image} />
+      <Image source={{uri: image}} style={styles.image} />
     </TouchableOpacity>
   );
 };
