@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Gap} from '../../component';
 import NewsItem from '../../component/NewsItem';
 import Firebase from '../../config';
@@ -40,7 +40,12 @@ const Home = () => {
         {added.length > 0
           ? added.map((res) => {
               return (
-                <NewsItem key={res.id} title={res.title} date={res.date} />
+                <NewsItem
+                  key={res.id}
+                  title={res.title}
+                  date={res.date}
+                  image={res.image}
+                />
               );
             })
           : null}

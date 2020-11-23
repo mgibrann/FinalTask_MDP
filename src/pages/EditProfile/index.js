@@ -9,16 +9,19 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {showMessage} from 'react-native-flash-message';
-import {IconAddPhoto, NullPhoto} from '../../assets';
-import {Button, Gap, Header, Input} from '../../component';
+import {IconAddPhoto} from '../../assets';
+import {Button, Gap, Header} from '../../component';
 import Firebase from '../../config';
 import {colors, fonts, getData} from '../../utils';
+import ImagePicker from 'react-native-image-picker';
 
 const EditProfile = ({navigation}) => {
   const [fullName, SetFullName] = useState();
   const [profession, SetProfession] = useState('');
   const [email, SetEmail] = useState('');
-  const [password, SetPassword] = useState('');
+  const [image, SetImage] = useState(
+    'https://lh3.googleusercontent.com/-oCS2G33ogSU/AAAAAAAAAAI/AAAAAAAAAAA/fntcdzg69Fk/s181-c/116225983760077661019.jpg',
+  );
 
   useEffect(() => {
     getData('user').then((res) => {
@@ -39,7 +42,7 @@ const EditProfile = ({navigation}) => {
         console.log(res);
         navigation.replace('SignIn');
       })
-      .catch((er) => {
+      .catch((err) => {
         const errormessage = err.message;
         showMessage({
           message: errormessage,
@@ -48,14 +51,24 @@ const EditProfile = ({navigation}) => {
       });
   };
 
+  const getImage = () => {
+    ImagePicker.launchImageLibrary(
+      {quality: 0.5, maxWidth: 200, maxHeight: 200},
+      (response) => {
+        SetImage(response.uri);
+        // console.log(response);
+      },
+    );
+  };
+
   return (
     <>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Header title="Edit Profile" />
         <View style={styles.page}>
           <View style={styles.container}>
-            <TouchableOpacity style={styles.profile}>
-              <Image source={NullPhoto} style={styles.avatar} />
+            <TouchableOpacity style={styles.profile} onPress={getImage}>
+              <Image source={{uri: image}} style={styles.avatar} />
               <Image source={IconAddPhoto} style={styles.addphoto} />
             </TouchableOpacity>
           </View>
@@ -98,7 +111,7 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     alignItems: 'center',
   },
-  avatar: {width: 110, height: 110},
+  avatar: {width: 110, height: 110, borderRadius: 110 / 2},
   addphoto: {height: 30, width: 30, position: 'absolute', right: 8, bottom: 8},
   title: {fontFamily: fonts.primary[700], fontSize: 16, color: colors.dark},
   desc: {
