@@ -39,7 +39,6 @@ const EditProfile = ({navigation}) => {
           message: 'Succes Sign Out',
           type: 'success',
         });
-        console.log(res);
         navigation.replace('SignIn');
       })
       .catch((err) => {

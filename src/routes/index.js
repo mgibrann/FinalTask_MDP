@@ -2,7 +2,15 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Splash, SignIn, SignUp, EditProfile, Home, AddPost} from '../pages';
+import {
+  Splash,
+  SignIn,
+  SignUp,
+  EditProfile,
+  Home,
+  AddPost,
+  DetailsNews,
+} from '../pages';
 import {BottomNavigator} from '../component';
 
 const Stack = createStackNavigator();
@@ -44,6 +52,11 @@ const Router = () => {
       <Stack.Screen
         name="MainApp"
         component={MainApp}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="DetailsNews"
+        component={DetailsNews}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

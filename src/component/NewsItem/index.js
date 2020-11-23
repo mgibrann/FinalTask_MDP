@@ -1,11 +1,10 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {PS5} from '../../assets';
 import {colors, fonts} from '../../utils';
 
-const NewsItem = ({title, date, image}) => {
+const NewsItem = ({title, date, image, onPress}) => {
   return (
-    <TouchableOpacity style={styles.wrapper}>
+    <TouchableOpacity style={styles.wrapper} onPress={onPress}>
       <View style={styles.container}>
         <Text style={styles.desc}>{title}</Text>
         <Text style={styles.date}>{date}</Text>

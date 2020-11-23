@@ -21,14 +21,11 @@ const SignIn = ({navigation}) => {
     Firebase.auth()
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
-        console.log('ini hasil login', res);
-
         Firebase.database()
           .ref(`users/${res.user.uid}`)
           .once('value')
           .then((res) => {
             if (res.val()) {
-              console.log('INIDATA USER', res.val());
               SetLoading(false);
             }
           })

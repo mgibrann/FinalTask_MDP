@@ -8,7 +8,7 @@ import {LogBox} from 'react-native';
 
 LogBox.ignoreLogs(['Setting a timer']);
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [latestNews, SetlatestNews] = useState('');
   const [topNews, SetTopNews] = useState('');
   const [added, SetAdded] = useState('');
@@ -33,6 +33,10 @@ const Home = () => {
       });
   }, []);
 
+  const onClickDetails = (res) => {
+    navigation.navigate('DetailsNews', res);
+  };
+
   return (
     <View style={styles.page}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -45,6 +49,7 @@ const Home = () => {
                   title={res.title}
                   date={res.date}
                   image={res.image}
+                  onPress={() => onClickDetails(res)}
                 />
               );
             })
@@ -58,6 +63,7 @@ const Home = () => {
                   title={res.title}
                   image={res.image}
                   date={res.date}
+                  onPress={() => onClickDetails(res)}
                 />
               );
             })
@@ -72,6 +78,7 @@ const Home = () => {
                   title={res.title}
                   image={res.image}
                   date={res.date}
+                  onPress={() => onClickDetails(res)}
                 />
               );
             })
