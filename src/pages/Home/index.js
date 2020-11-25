@@ -41,19 +41,21 @@ const Home = ({navigation}) => {
     <View style={styles.page}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>NEWS Burung</Text>
-        {added.length > 0
-          ? added.map((res) => {
-              return (
-                <NewsItem
-                  key={res.id}
-                  title={res.title}
-                  date={res.date}
-                  image={res.image}
-                  onPress={() => onClickDetails(res)}
-                />
-              );
-            })
-          : null}
+        <View style={styles.content}>
+          {added.length > 0
+            ? added.map((res) => {
+                return (
+                  <NewsItem
+                    key={res.id}
+                    title={res.title}
+                    date={res.date}
+                    image={res.image}
+                    onPress={() => onClickDetails(res)}
+                  />
+                );
+              })
+            : null}
+        </View>
         <Text style={styles.title}>Top Burung</Text>
         {topNews.length > 0
           ? topNews.map((res) => {
@@ -94,4 +96,10 @@ export default Home;
 const styles = StyleSheet.create({
   page: {flex: 1, backgroundColor: colors.background, padding: 16},
   title: {fontFamily: fonts.primary[700], fontSize: 20, color: colors.blue},
+  content: {
+    backgroundColor: colors.white,
+    padding: 10,
+    paddingBottom: 5,
+    borderRadius: 10,
+  },
 });

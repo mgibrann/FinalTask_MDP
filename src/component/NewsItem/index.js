@@ -21,10 +21,8 @@ const styles = StyleSheet.create({
   container: {flexDirection: 'column', flex: 1},
   wrapper: {
     flexDirection: 'row',
-    marginTop: 8,
-    backgroundColor: colors.white,
-    padding: 4,
-    borderRadius: 10,
+    marginBottom: 5,
+    justifyContent: 'center',
   },
   desc: {
     fontFamily: fonts.primary[600],
