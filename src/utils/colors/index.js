@@ -20,7 +20,7 @@ export const colors = {
   green: mainColors.green1,
   background: mainColors.white2,
   border: mainColors.black,
-  bottomnavigation: mainColors.white2,
+  bottomnavigation: mainColors.blue1,
   loadingBackground: mainColors.black,
   text: {
     primary: mainColors.dark1,

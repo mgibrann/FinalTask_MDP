@@ -58,10 +58,9 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: colors.white,
+    backgroundColor: colors.bottomnavigation,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    borderWidth: 2,
     borderColor: colors.white,
   },
 });

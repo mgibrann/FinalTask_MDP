@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, ScrollView} from 'react-native';
+import {StyleSheet, Image, View, ScrollView, Text, LogBox} from 'react-native';
 import {showMessage} from 'react-native-flash-message';
-import {Input, Header, Gap, Button, Loading} from '../../component';
+import {Input, Gap, Button, Loading, Link} from '../../component';
 import Firebase from '../../config';
-import {colors, storeData} from '../../utils';
-import {LogBox} from 'react-native';
+import {colors, fonts, storeData} from '../../utils';
+import {IconLogo} from '../../assets';
 LogBox.ignoreLogs(['Setting a timer']);
 
 const SignUp = ({navigation}) => {
@@ -49,8 +49,19 @@ const SignUp = ({navigation}) => {
   return (
     <>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Header title="Sign Up" onPress={() => navigation.goBack()} />
         <View style={styles.container}>
+          <View>
+            <Image
+              source={IconLogo}
+              style={{
+                height: 80,
+                width: 80,
+                justifyContent: 'center',
+              }}
+            />
+            <Text style={styles.title}>Create Your Account Account</Text>
+          </View>
+          <Gap height={20} />
           <Input
             text="Name"
             value={fullName}
@@ -77,6 +88,12 @@ const SignUp = ({navigation}) => {
           />
           <Gap height={40} />
           <Button text="Continue" onPress={onContinue} />
+          <Link
+            text="Already Have an Account?"
+            align="center"
+            size={12}
+            onPress={() => navigation.navigate('SignIn')}
+          />
         </View>
         {loading && <Loading />}
       </ScrollView>
@@ -93,5 +110,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     flex: 1,
     height: '100%',
+  },
+  title: {
+    fontSize: 22,
+    color: colors.dark,
+    maxWidth: 205,
+    fontFamily: fonts.primary[700],
+    marginTop: 10,
   },
 });

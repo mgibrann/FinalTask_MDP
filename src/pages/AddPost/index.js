@@ -5,26 +5,28 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image,
 } from 'react-native';
 import {Button, Gap, Header, Input} from '../../component';
 import Firebase from '../../config';
-import {colors} from '../../utils';
+import {colors, fonts} from '../../utils';
 import ImagePicker from 'react-native-image-picker';
 import {showMessage} from 'react-native-flash-message';
+import {IconLogo} from '../../assets';
 
 const AddPost = () => {
   const [title, SetTitle] = useState('');
   const [image, SetImage] = useState('');
   const [description, SetDescription] = useState('');
   const [date, SetDate] = useState('');
-  const [id, SetId] = useState(0);
+  const [id, SetId] = useState(1);
   const [filedesc, SetFileDesc] = useState('');
 
   const onAddPost = () => {
     Firebase.database()
       .ref('news/Added/' + id)
       .set({
-        date: title,
+        date: date,
         id: id,
         title: title,
         image: image,
@@ -40,6 +42,11 @@ const AddPost = () => {
       type: 'success',
     });
     SetId(id + 1);
+    SetTitle('');
+    SetDate('');
+    SetImage('');
+    SetDescription('');
+    SetFileDesc('');
   };
 
   const getImage = () => {
@@ -55,9 +62,10 @@ const AddPost = () => {
 
   return (
     <>
-      <Header title="Add Burung" />
+      <Header title="Add New Burung" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.page}>
+          <Gap height={20} />
           <Input
             text="Title"
             value={title}
@@ -88,7 +96,7 @@ const AddPost = () => {
             <Text style={styles.file}>{filedesc}</Text>
           </View>
           <Gap height={40} />
-          <Button text="Add Burung" onPress={onAddPost} />
+          <Button text="Add Burung" secondary onPress={onAddPost} />
         </View>
       </ScrollView>
     </>
@@ -115,4 +123,11 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   txt: {color: colors.white},
+  title: {
+    fontSize: 22,
+    color: colors.dark,
+    maxWidth: 205,
+    fontFamily: fonts.primary[700],
+    marginTop: 10,
+  },
 });

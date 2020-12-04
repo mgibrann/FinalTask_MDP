@@ -3,10 +3,10 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Button, Gap} from '..';
 import {colors, fonts} from '../../utils';
 
-const Header = ({title, onPress}) => {
+const Header = ({title, onPress, btn}) => {
   return (
     <View style={styles.container}>
-      <Button icon onPress={onPress} />
+      {btn && <Button icon onPress={onPress} />}
       <Text style={styles.txt}>{title}</Text>
       <Gap width={24} />
     </View>
@@ -20,14 +20,14 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary[600],
     fontSize: 20,
     lineHeight: 27,
-    color: colors.text.primary,
+    color: colors.white,
     textAlign: 'center',
     flex: 1,
   },
   container: {
     paddingVertical: 30,
     paddingHorizontal: 16,
-    backgroundColor: colors.white,
+    backgroundColor: colors.blue,
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomLeftRadius: 20,

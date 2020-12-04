@@ -8,8 +8,8 @@ const DetailsNew = ({route, navigation}) => {
 
   return (
     <>
+      <Header title="Details News" btn onPress={() => navigation.goBack()} />
       <ScrollView>
-        <Header title="Details News" onPress={() => navigation.goBack()} />
         <View style={styles.page}>
           <Image source={{uri: image}} style={styles.img} />
           <Text style={styles.title}>{title}</Text>
@@ -52,7 +52,7 @@ export default DetailsNew;
 
 const styles = StyleSheet.create({
   page: {padding: 20, flex: 1, backgroundColor: colors.background},
-  img: {width: 300, height: 200, borderRadius: 20},
+  img: {width: '100%', height: 200, borderRadius: 20},
   title: {fontFamily: fonts.primary[800], color: colors.dark, fontSize: 22},
   date: {
     fontFamily: fonts.primary[600],

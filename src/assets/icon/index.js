@@ -1,5 +1,5 @@
 import IconLogo from './logo.png';
-import IconBack from './arrow-back.png';
+import IconBack from './arrow-light.png';
 import IconAddPhoto from './add-photo.png';
 import IconNews from './ic-news.svg';
 import IconNewsActive from './ic-news-active.svg';

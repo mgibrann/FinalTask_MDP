@@ -62,8 +62,8 @@ const EditProfile = ({navigation}) => {
 
   return (
     <>
+      <Header title="Edit Profile" />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Header title="Edit Profile" />
         <View style={styles.page}>
           <View style={styles.container}>
             <TouchableOpacity style={styles.profile} onPress={getImage}>
@@ -84,7 +84,7 @@ const EditProfile = ({navigation}) => {
             <Text style={styles.desc}>{email}</Text>
           </View>
           <Gap height={40} />
-          <Button text="Sign Out" onPress={onLogOut} />
+          <Button text="Sign Out" secondary onPress={onLogOut} />
         </View>
       </ScrollView>
     </>
@@ -119,7 +119,6 @@ const styles = StyleSheet.create({
     color: colors.blue,
     marginBottom: 5,
     marginTop: 5,
-    textTransform: 'uppercase',
   },
   wrap: {borderBottomWidth: 1, borderColor: colors.border, marginBottom: 10},
 });

@@ -17,13 +17,6 @@ const Home = ({navigation}) => {
     Firebase.database()
       .ref('/news')
       .on('value', (snapshot) => {
-        // .once('value').then(res).catch()
-        // const latest = res.val().latest;
-        // const top = res.val().top;
-        // SetlatestNews(latest);
-        // SetTopNews(top);
-        // console.log('REALTIME lates', snapshot.val().latest);
-        // console.log();
         const latest = snapshot.val().latest;
         const top = snapshot.val().top;
         const added = snapshot.val().Added;
@@ -40,7 +33,7 @@ const Home = ({navigation}) => {
   return (
     <View style={styles.page}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text style={styles.title}>NEWS Burung</Text>
+        <Text style={styles.title}>News Burung</Text>
         <View style={styles.content}>
           {added.length > 0
             ? added.map((res) => {
@@ -57,34 +50,37 @@ const Home = ({navigation}) => {
             : null}
         </View>
         <Text style={styles.title}>Top Burung</Text>
-        {topNews.length > 0
-          ? topNews.map((res) => {
-              return (
-                <NewsItem
-                  key={res.id}
-                  title={res.title}
-                  image={res.image}
-                  date={res.date}
-                  onPress={() => onClickDetails(res)}
-                />
-              );
-            })
-          : null}
-        <Gap height={25} />
+        <View style={styles.content}>
+          {topNews.length > 0
+            ? topNews.map((res) => {
+                return (
+                  <NewsItem
+                    key={res.id}
+                    title={res.title}
+                    image={res.image}
+                    date={res.date}
+                    onPress={() => onClickDetails(res)}
+                  />
+                );
+              })
+            : null}
+        </View>
         <Text style={styles.title}>Latest Burung</Text>
-        {latestNews.length > 0
-          ? latestNews.map((res) => {
-              return (
-                <NewsItem
-                  key={res.id}
-                  title={res.title}
-                  image={res.image}
-                  date={res.date}
-                  onPress={() => onClickDetails(res)}
-                />
-              );
-            })
-          : null}
+        <View style={styles.content}>
+          {latestNews.length > 0
+            ? latestNews.map((res) => {
+                return (
+                  <NewsItem
+                    key={res.id}
+                    title={res.title}
+                    image={res.image}
+                    date={res.date}
+                    onPress={() => onClickDetails(res)}
+                  />
+                );
+              })
+            : null}
+        </View>
         <Gap height={25} />
       </ScrollView>
     </View>
@@ -94,8 +90,19 @@ const Home = ({navigation}) => {
 export default Home;
 
 const styles = StyleSheet.create({
-  page: {flex: 1, backgroundColor: colors.background, padding: 16},
-  title: {fontFamily: fonts.primary[700], fontSize: 20, color: colors.blue},
+  page: {
+    flex: 1,
+    backgroundColor: colors.background,
+    padding: 16,
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+  title: {
+    fontFamily: fonts.primary[700],
+    fontSize: 20,
+    color: colors.blue,
+    marginTop: 20,
+  },
   content: {
     backgroundColor: colors.white,
     padding: 10,

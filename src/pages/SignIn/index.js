@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {showMessage} from 'react-native-flash-message';
 import {IconLogo} from '../../assets';
 import {Button, Gap, Input, Link, Loading} from '../../component';
@@ -15,8 +15,6 @@ const SignIn = ({navigation}) => {
   const [loading, SetLoading] = useState(false);
 
   const onSignIn = () => {
-    const data = {};
-
     SetLoading(true);
     Firebase.auth()
       .signInWithEmailAndPassword(email, password)
@@ -46,45 +44,48 @@ const SignIn = ({navigation}) => {
   };
   return (
     <>
-      <View style={styles.page}>
-        <View>
-          <Image
-            source={IconLogo}
-            style={{
-              height: 80,
-              width: 80,
-              justifyContent: 'center',
-            }}
-          />
-          <Text style={styles.title}>Sign In to Your Account</Text>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.page}>
+          <View>
+            <Image
+              source={IconLogo}
+              style={{
+                height: 80,
+                width: 80,
+                justifyContent: 'center',
+              }}
+            />
+            <Text style={styles.title}>Sign In to Your Account</Text>
+          </View>
+          <Gap height={30} />
+          <View>
+            <Input
+              text="Email"
+              value={email}
+              onChangeText={(value) => SetEmail(value)}
+            />
+            <Gap height={20} />
+            <Input
+              text="Password"
+              value={password}
+              secureTextEntry
+              onChangeText={(value) => SetPassword(value)}
+            />
+            <Link text="Forget My Password" align="left" size={12} />
+          </View>
+          <Gap height={40} />
+          <View>
+            <Button text="Sign In" onPress={onSignIn} />
+            <Link
+              text="Create New Account"
+              align="center"
+              size={12}
+              onPress={() => navigation.navigate('SignUp')}
+            />
+          </View>
         </View>
-        <Gap height={30} />
-        <View>
-          <Input
-            text="Email"
-            value={email}
-            onChangeText={(value) => SetEmail(value)}
-          />
-          <Gap height={20} />
-          <Input
-            text="Password"
-            value={password}
-            onChangeText={(value) => SetPassword(value)}
-          />
-          <Link text="Forget My Password" align="left" size={12} />
-        </View>
-        <Gap height={40} />
-        <View>
-          <Button text="Sign In" onPress={onSignIn} />
-          <Link
-            text="Create New Account"
-            align="center"
-            size={12}
-            onPress={() => navigation.navigate('SignUp')}
-          />
-        </View>
-      </View>
-      {loading && <Loading />}
+        {loading && <Loading />}
+      </ScrollView>
     </>
   );
 };
