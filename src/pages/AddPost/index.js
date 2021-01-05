@@ -33,9 +33,6 @@ const AddPost = () => {
       })
       .catch((res) => {
         console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
       });
     showMessage({
       message: 'Success Add Burung',

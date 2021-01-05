@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {showMessage} from 'react-native-flash-message';
-import {IconAddPhoto} from '../../assets';
+import {Gibran, IconAddPhoto} from '../../assets';
 import {Button, Gap, Header} from '../../component';
 import Firebase from '../../config';
 import {colors, fonts, getData} from '../../utils';
@@ -22,12 +22,14 @@ const EditProfile = ({navigation}) => {
   const [image, SetImage] = useState(
     'https://lh3.googleusercontent.com/-oCS2G33ogSU/AAAAAAAAAAI/AAAAAAAAAAA/fntcdzg69Fk/s181-c/116225983760077661019.jpg',
   );
+  const [nim, SetNim] = useState('');
 
   useEffect(() => {
     getData('user').then((res) => {
       SetFullName(res.fullName);
       SetEmail(res.email);
       SetProfession(res.profession);
+      SetNim(res.nim);
     });
   }, []);
 
@@ -62,26 +64,26 @@ const EditProfile = ({navigation}) => {
 
   return (
     <>
-      <Header title="Edit Profile" />
+      <Header title="Praktikan" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.page}>
           <View style={styles.container}>
             <TouchableOpacity style={styles.profile} onPress={getImage}>
-              <Image source={{uri: image}} style={styles.avatar} />
-              <Image source={IconAddPhoto} style={styles.addphoto} />
+              <Image source={Gibran} style={styles.avatar} />
+              {/* <Image source={IconAddPhoto} style={styles.addphoto} /> */}
             </TouchableOpacity>
           </View>
           <View style={styles.wrap}>
-            <Text style={styles.title}>Full Name</Text>
+            <Text style={styles.title}>Nama</Text>
             <Text style={styles.desc}>{fullName}</Text>
           </View>
           <View style={styles.wrap}>
-            <Text style={styles.title}>Profession</Text>
-            <Text style={styles.desc}>{profession}</Text>
+            <Text style={styles.title}>NIM</Text>
+            <Text style={styles.desc}>21120118130067</Text>
           </View>
           <View style={styles.wrap}>
-            <Text style={styles.title}>Email</Text>
-            <Text style={styles.desc}>{email}</Text>
+            <Text style={styles.title}>Kelompok</Text>
+            <Text style={styles.desc}>1</Text>
           </View>
           <Gap height={40} />
           <Button text="Sign Out" secondary onPress={onLogOut} />
